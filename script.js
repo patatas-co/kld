@@ -78,3 +78,47 @@ document.querySelectorAll('.feature-card').forEach(card => {
         this.style.transform = 'translateY(0) scale(1)';
     });
 });
+
+// Testimonial rotation with fade effect
+const testimonials = document.querySelectorAll('.testimonial');
+let currentTestimonialIndex = 0;
+const testimonialIntervalMs = 2000;
+let testimonialIntervalId = null;
+const testimonialsContainer = document.querySelector('.testimonials');
+
+function rotateTestimonials() {
+    if (testimonials.length <= 1) return;
+
+    testimonials[currentTestimonialIndex].classList.remove('active');
+    currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+    testimonials[currentTestimonialIndex].classList.add('active');
+}
+
+function stopTestimonialRotation() {
+    if (testimonialIntervalId !== null) {
+        clearInterval(testimonialIntervalId);
+        testimonialIntervalId = null;
+    }
+}
+
+function startTestimonialRotation() {
+    stopTestimonialRotation();
+    testimonialIntervalId = setInterval(rotateTestimonials, testimonialIntervalMs);
+}
+
+if (testimonials.length) {
+    testimonials.forEach((testimonial, index) => {
+        if (index === 0) {
+            testimonial.classList.add('active');
+        } else {
+            testimonial.classList.remove('active');
+        }
+    });
+
+    startTestimonialRotation();
+
+    if (testimonialsContainer) {
+        testimonialsContainer.addEventListener('mouseenter', stopTestimonialRotation);
+        testimonialsContainer.addEventListener('mouseleave', startTestimonialRotation);
+    }
+}
