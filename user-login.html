@@ -3,536 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign in - Google Accounts</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Roboto', Arial, sans-serif;
-            background-color: #fff;
-            color: #202124;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 450px;
-            padding: 20px;
-        }
-
-        .logo {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .logo img {
-            width: 75px;
-            height: 24px;
-        }
-
-        .card {
-            background: #fff;
-            border: 1px solid #dadce0;
-            border-radius: 8px;
-            padding: 48px 40px 36px;
-            box-shadow: 0 2px 10px 0 rgba(0,0,0,0.1);
-        }
-
-        .title {
-            font-size: 24px;
-            font-weight: 400;
-            line-height: 1.33;
-            margin-bottom: 8px;
-            text-align: center;
-        }
-
-        .subtitle {
-            font-size: 16px;
-            color: #5f6368;
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .form-group {
-            margin-bottom: 24px;
-        }
-
-        .input-wrapper {
-            position: relative;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 13px 16px;
-            border: 1px solid #dadce0;
-            border-radius: 4px;
-            font-size: 16px;
-            outline: none;
-            transition: border-color 0.2s;
-            background: transparent;
-        }
-
-        .form-input:focus {
-            border-color: #1a73e8;
-            border-width: 2px;
-            padding: 12px 15px;
-        }
-
-        .form-input:focus + .floating-label,
-        .form-input:not(:placeholder-shown) + .floating-label {
-            transform: translateY(-22px) scale(0.75);
-            color: #1a73e8;
-        }
-
-        .floating-label {
-            position: absolute;
-            left: 16px;
-            top: 14px;
-            color: #5f6368;
-            font-size: 16px;
-            pointer-events: none;
-            transition: all 0.2s;
-            background: white;
-            padding: 0 4px;
-        }
-
-        .forgot-email {
-            color: #1a73e8;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .forgot-email:hover {
-            text-decoration: underline;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 32px;
-            font-size: 14px;
-        }
-
-        .checkbox {
-            margin-right: 8px;
-            margin-top: 2px;
-        }
-
-        .checkbox-label {
-            color: #5f6368;
-            line-height: 20px;
-        }
-
-        .button-group {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 32px;
-        }
-
-        .btn-create {
-            color: #1a73e8;
-            background: transparent;
-            border: none;
-            padding: 9px 24px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .btn-create:hover {
-            background-color: rgba(26, 115, 232, 0.04);
-        }
-
-        .btn-primary {
-            background-color: #1a73e8;
-            color: white;
-            border: none;
-            padding: 9px 24px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .btn-primary:hover {
-            background-color: #1765cc;
-        }
-
-        .btn-primary:disabled {
-            background-color: #dadce0;
-            color: #9aa0a6;
-            cursor: not-allowed;
-        }
-
-        .divider {
-            text-align: center;
-            margin: 32px 0;
-            position: relative;
-        }
-
-        .divider::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background-color: #dadce0;
-        }
-
-        .divider span {
-            background: white;
-            padding: 0 16px;
-            color: #5f6368;
-            font-size: 14px;
-        }
-
-        .name-row {
-            display: flex;
-            gap: 16px;
-        }
-
-        .name-row .form-group {
-            flex: 1;
-        }
-
-        .error-message {
-            color: #d93025;
-            font-size: 12px;
-            margin-top: 4px;
-            display: none;
-        }
-
-        .password-requirements {
-            font-size: 12px;
-            color: #5f6368;
-            margin-top: 8px;
-            display: none;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .show-password-row {
-            display: flex;
-            align-items: center;
-            margin-top: 16px;
-            margin-left: 2px;
-        }
-
-        @media (max-width: 480px) {
-            .card {
-                padding: 32px 24px;
-                border: none;
-                box-shadow: none;
-            }
-            
-            .container {
-                padding: 10px;
-            }
-        }
-    </style>
+    <title>Join ConnectEd | Sign In & Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="auth.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
 </head>
-<body>
-    <div class="container">
-        <div class="logo">
-            <svg width="75" height="24" viewBox="0 0 75 24" fill="none">
-                <path d="M37.44 12.34c0-.77-.07-1.52-.19-2.23h-11.2v4.23h6.4c-.27 1.45-1.1 2.68-2.35 3.5v2.9h3.8c2.22-2.04 3.5-5.05 3.5-8.6l.04.2z" fill="#4285f4"/>
-                <path d="M26.05 24c3.17 0 5.83-1.05 7.78-2.84l-3.8-2.9c-1.05.7-2.4 1.11-3.98 1.11-3.06 0-5.65-2.07-6.57-4.85h-3.93v2.99C17.7 21.13 21.54 24 26.05 24z" fill="#34a853"/>
-                <path d="M19.48 14.52c-.24-.7-.37-1.45-.37-2.22s.13-1.52.37-2.22V7.09h-3.93C14.7 8.43 14.25 10.17 14.25 12s.45 3.57 1.3 4.91l3.93-2.39z" fill="#fbbc05"/>
-                <path d="M26.05 4.75c1.73 0 3.27.59 4.49 1.76l3.36-3.36C31.83 1.19 29.17 0 26.05 0 21.54 0 17.7 2.87 15.55 7.09l3.93 2.39c.92-2.78 3.51-4.85 6.57-4.85l-.05.12z" fill="#ea4335"/>
-            </svg>
-        </div>
-
-        <div class="card">
-            <!-- Sign In Form -->
-            <div id="signin-form">
-                <h1 class="title">Sign in</h1>
-                <p class="subtitle">Use your Google Account</p>
-                
-                <form>
-                    <div class="form-group">
-                        <div class="input-wrapper">
-                            <input type="email" class="form-input" id="signin-email" placeholder=" " required>
-                            <label class="floating-label" for="signin-email">Email or phone</label>
-                        </div>
-                        <div class="error-message" id="signin-email-error">Please enter a valid email address</div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="input-wrapper">
-                            <input type="password" class="form-input" id="signin-password" placeholder=" " required>
-                            <label class="floating-label" for="signin-password">Enter your password</label>
-                        </div>
-                        <div class="show-password-row" style="margin-top:16px;">
-                            <input type="checkbox" id="show-signin-password" style="margin-right:8px;">
-                            <label for="show-signin-password" style="font-size:16px; color:#222; cursor:pointer;">Show password</label>
-                        </div>
-                        <div class="error-message" id="signin-password-error">Please enter your password</div>
-                    </div>
-
-                    <div style="margin-bottom: 32px;">
-                        <a href="#" class="forgot-email">Forgot email?</a>
-                    </div>
-
-                    <div class="button-group">
-                        <button type="button" class="btn-create" onclick="showSignupForm()">Create account</button>
-                        <button type="submit" class="btn-primary" id="signin-btn">Next</button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Sign Up Form -->
-            <div id="signup-form" class="hidden">
-                <h1 class="title">Create your Google Account</h1>
-                <p class="subtitle">Enter your details</p>
-                
-                <form>
-                    <div class="name-row">
-                        <div class="form-group">
-                            <div class="input-wrapper">
-                                <input type="text" class="form-input" id="first-name" placeholder=" " required>
-                                <label class="floating-label" for="first-name">First name</label>
-                            </div>
-                            <div class="error-message" id="first-name-error">Please enter your first name</div>
-                        </div>
-                        <div class="form-group">
-                            <div class="input-wrapper">
-                                <input type="text" class="form-input" id="last-name" placeholder=" " required>
-                                <label class="floating-label" for="last-name">Last name</label>
-                            </div>
-                            <div class="error-message" id="last-name-error">Please enter your last name</div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="input-wrapper">
-                            <input type="email" class="form-input" id="signup-email" placeholder=" " required>
-                            <label class="floating-label" for="signup-email">Username</label>
-                        </div>
-                        <div class="error-message" id="signup-email-error">Please enter a valid email address</div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="input-wrapper">
-                            <input type="password" class="form-input" id="signup-password" placeholder=" " required>
-                            <label class="floating-label" for="signup-password">Password</label>
-                        </div>
-                        <div class="password-requirements" id="password-requirements">
-                            Use 8 or more characters with a mix of letters, numbers & symbols
-                        </div>
-                        <div class="error-message" id="signup-password-error">Password must be at least 8 characters</div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="input-wrapper">
-                            <input type="password" class="form-input" id="confirm-password" placeholder=" " required>
-                            <label class="floating-label" for="confirm-password">Confirm password</label>
-                        </div>
-                        <div class="error-message" id="confirm-password-error">Passwords don't match</div>
-                    </div>
-
-                    <div class="checkbox-group">
-                        <input type="checkbox" class="checkbox" id="show-password">
-                        <label class="checkbox-label" for="show-password">Show password</label>
-                    </div>
-
-                    <div class="button-group">
-                        <button type="button" class="btn-create" onclick="showSigninForm()">Sign in instead</button>
-                        <button type="submit" class="btn-primary" id="signup-btn">Create</button>
-                    </div>
-                </form>
-            </div>
+<body class="auth-page">
+    <div class="bg-animation" aria-hidden="true">
+        <div class="floating-shapes">
+            <div class="shape shape1"></div>
+            <div class="shape shape2"></div>
+            <div class="shape shape3"></div>
+            <div class="shape shape4"></div>
         </div>
     </div>
 
-    <script>
-        // Form switching
-        function showSignupForm() {
-            document.getElementById('signin-form').classList.add('hidden');
-            document.getElementById('signup-form').classList.remove('hidden');
-        }
+    <header id="header" class="auth-header">
+        <nav>
+            <div class="nav-brand">
+                <div class="logo">
+                    <img src="images/logo.png" alt="ConnectEd logo" class="logo-img" />
+                    <span class="logo-text">ConnectEd</span>
+                </div>
+                <div class="breadcrumbs auth-breadcrumbs" aria-label="Breadcrumb">
+                    <ol>
+                        <li><a href="index.html#home">Home</a></li>
+                        <li aria-current="page">Join ConnectEd</li>
+                    </ol>
+                </div>
+            </div>
+            <a href="index.html#organization" class="cta-btn">Explore Orgs</a>
+        </nav>
+    </header>
 
-        function showSigninForm() {
-            document.getElementById('signup-form').classList.add('hidden');
-            document.getElementById('signin-form').classList.remove('hidden');
-        }
+    <main class="auth-main" aria-labelledby="authHeading">
+        <div class="auth-container">
+            <section class="auth-info">
+                <p class="eyebrow">Welcome to ConnectEd</p>
+                <h1 id="authHeading">Log In or Create Your Student Profile</h1>
+                <p>
+                    Unlock tailored recommendations, track organization applications, and stay updated on campus events
+                    built around your interests.
+                </p>
+                <ul class="auth-benefits">
+                    <li><span>Discover organizations that match your goals.</span></li>
+                    <li><span>Receive curated event invites and reminders.</span></li>
+                    <li><span>Collaborate with mentors, advisers, and peers.</span></li>
+                </ul>
+                <div class="auth-highlight">
+                    <strong>New here?</strong>
+                    <span>Create an account in under a minute and start exploring what campus life has to offer.</span>
+                </div>
+            </section>
 
-        // Email validation
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
+            <section class="auth-card" aria-live="polite">
+                <div class="form-toggle" role="tablist" aria-label="Authentication forms">
+                    <button class="toggle-btn active" type="button" role="tab" aria-controls="signInForm" aria-selected="true" data-target="signin">
+                        Sign In
+                    </button>
+                    <button class="toggle-btn" type="button" role="tab" aria-controls="signUpForm" aria-selected="false" data-target="signup">
+                        Create Account
+                    </button>
+                </div>
 
-        // Password visibility toggle
-        document.getElementById('show-password').addEventListener('change', function() {
-            const passwordInputs = ['signup-password', 'confirm-password'];
-            passwordInputs.forEach(id => {
-                const input = document.getElementById(id);
-                input.type = this.checked ? 'text' : 'password';
-            });
-        });
+                <div class="form-feedback" id="authFeedback" role="alert" hidden></div>
 
-        // Password visibility toggle for sign in
-        document.getElementById('show-signin-password').addEventListener('change', function() {
-            const input = document.getElementById('signin-password');
-            input.type = this.checked ? 'text' : 'password';
-        });
+                <form id="signInForm" class="auth-form active" novalidate aria-labelledby="signInLegend">
+                    <fieldset>
+                        <legend id="signInLegend" class="visually-hidden">Sign in with your email and password</legend>
+                        <div class="form-group">
+                            <label for="signInEmail">Email address</label>
+                            <input type="email" id="signInEmail" name="email" placeholder="Enter your email" autocomplete="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signInPassword">Password</label>
+                            <div class="input-with-toggle">
+                                <input type="password" id="signInPassword" name="password" placeholder="Enter your password" autocomplete="current-password" required minlength="8">
+                                <button type="button" class="password-toggle" data-target="signInPassword" aria-label="Show password" aria-pressed="false">
+                                    <span class="toggle-text">Show</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-helpers">
+                            <label class="checkbox">
+                                <input type="checkbox" id="rememberMe" name="remember">
+                                <span>Keep me signed in</span>
+                            </label>
+                            <a href="#" class="text-link" aria-disabled="true">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="auth-submit">Sign In</button>
+                    </fieldset>
+                    <p class="auth-meta">
+                        New to ConnectEd?
+                        <button type="button" class="inline-link" data-target="signup">Create an account</button>
+                    </p>
+                </form>
 
-        // Password requirements display
-        document.getElementById('signup-password').addEventListener('focus', function() {
-            document.getElementById('password-requirements').style.display = 'block';
-        });
+                <form id="signUpForm" class="auth-form" novalidate aria-labelledby="signUpLegend">
+                    <fieldset>
+                        <legend id="signUpLegend" class="visually-hidden">Create a new ConnectEd account</legend>
+                        <div class="form-group">
+                            <label for="signUpName">Name</label>
+                            <input type="text" id="signUpName" name="fullName" placeholder="Enter name" autocomplete="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signUpEmail">Email address</label>
+                            <input type="email" id="signUpEmail" name="email" placeholder="Enter email" autocomplete="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signUpPassword">Password</label>
+                            <div class="input-with-toggle">
+                                <input type="password" id="signUpPassword" name="password" placeholder="Create a strong password" autocomplete="new-password" required minlength="8">
+                                <button type="button" class="password-toggle" data-target="signUpPassword" aria-label="Show password" aria-pressed="false">
+                                    <span class="toggle-text">Show</span>
+                                </button>
+                            </div>
+                        </div>
+                        <button type="submit" class="auth-submit">Create Account</button>
+                    </fieldset>
+                    <p class="auth-meta">
+                        Already have an account?
+                        <button type="button" class="inline-link" data-target="signin">Sign in instead</button>
+                    </p>
+                </form>
 
-        document.getElementById('signup-password').addEventListener('blur', function() {
-            document.getElementById('password-requirements').style.display = 'none';
-        });
+                <footer class="auth-card-footer">
+                    <p>By continuing, you agree to our
+                        <a href="index.html#terms" class="text-link">Terms</a>
+                        and
+                        <a href="index.html#privacy" class="text-link">Privacy Policy</a>.
+                    </p>
+                </footer>
+            </section>
+        </div>
+    </main>
 
-        // Form validation
-        function showError(inputId, errorId, message) {
-            const input = document.getElementById(inputId);
-            const error = document.getElementById(errorId);
-            input.style.borderColor = '#d93025';
-            error.textContent = message;
-            error.style.display = 'block';
-        }
+    <footer class="auth-footer">
+        <p>&copy; 2024 ConnectEd. Empowering student success through collaboration.</p>
+    </footer>
 
-        function hideError(inputId, errorId) {
-            const input = document.getElementById(inputId);
-            const error = document.getElementById(errorId);
-            input.style.borderColor = '#dadce0';
-            error.style.display = 'none';
-        }
-
-        // Sign in form validation
-        document.getElementById('signin-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('signin-email').value;
-            const password = document.getElementById('signin-password').value;
-            let isValid = true;
-
-            // Validate email
-            if (!email) {
-                showError('signin-email', 'signin-email-error', 'Please enter your email');
-                isValid = false;
-            } else if (!validateEmail(email)) {
-                showError('signin-email', 'signin-email-error', 'Please enter a valid email address');
-                isValid = false;
-            } else {
-                hideError('signin-email', 'signin-email-error');
-            }
-
-            // Validate password
-            if (!password) {
-                showError('signin-password', 'signin-password-error', 'Please enter your password');
-                isValid = false;
-            } else {
-                hideError('signin-password', 'signin-password-error');
-            }
-
-            if (isValid) {
-                alert('Sign in successful! (Demo)');
-            }
-        });
-
-        // Sign up form validation
-        document.getElementById('signup-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const firstName = document.getElementById('first-name').value;
-            const lastName = document.getElementById('last-name').value;
-            const email = document.getElementById('signup-email').value;
-            const password = document.getElementById('signup-password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-            let isValid = true;
-
-            // Validate first name
-            if (!firstName.trim()) {
-                showError('first-name', 'first-name-error', 'Please enter your first name');
-                isValid = false;
-            } else {
-                hideError('first-name', 'first-name-error');
-            }
-
-            // Validate last name
-            if (!lastName.trim()) {
-                showError('last-name', 'last-name-error', 'Please enter your last name');
-                isValid = false;
-            } else {
-                hideError('last-name', 'last-name-error');
-            }
-
-            // Validate email
-            if (!email) {
-                showError('signup-email', 'signup-email-error', 'Please enter an email address');
-                isValid = false;
-            } else if (!validateEmail(email)) {
-                showError('signup-email', 'signup-email-error', 'Please enter a valid email address');
-                isValid = false;
-            } else {
-                hideError('signup-email', 'signup-email-error');
-            }
-
-            // Validate password
-            if (!password) {
-                showError('signup-password', 'signup-password-error', 'Please enter a password');
-                isValid = false;
-            } else if (password.length < 8) {
-                showError('signup-password', 'signup-password-error', 'Password must be at least 8 characters');
-                isValid = false;
-            } else {
-                hideError('signup-password', 'signup-password-error');
-            }
-
-            // Validate confirm password
-            if (!confirmPassword) {
-                showError('confirm-password', 'confirm-password-error', 'Please confirm your password');
-                isValid = false;
-            } else if (password !== confirmPassword) {
-                showError('confirm-password', 'confirm-password-error', 'Passwords don\'t match');
-                isValid = false;
-            } else {
-                hideError('confirm-password', 'confirm-password-error');
-            }
-
-            if (isValid) {
-                alert('Account created successfully! (Demo)');
-            }
-        });
-
-        // Real-time validation
-        document.getElementById('signin-email').addEventListener('input', function() {
-            if (this.value && validateEmail(this.value)) {
-                hideError('signin-email', 'signin-email-error');
-            }
-        });
-
-        document.getElementById('signup-email').addEventListener('input', function() {
-            if (this.value && validateEmail(this.value)) {
-                hideError('signup-email', 'signup-email-error');
-            }
-        });
-
-        document.getElementById('confirm-password').addEventListener('input', function() {
-            const password = document.getElementById('signup-password').value;
-            if (this.value === password) {
-                hideError('confirm-password', 'confirm-password-error');
-            }
-        });
-    </script>
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
 </body>
 </html>
