@@ -347,41 +347,63 @@ nav {
     color: #fff;
 }
 
+
 .cta-section p {
     font-size: 1.2rem;
     color: #fff;
     margin-bottom: 2rem;
 }
 
-/* Footer */
-footer {
-    background: #2c3e50;
-    color: white;
-    padding: 40px 5%;
-    text-align: center;
+.testimonials {
+    position: relative;
+    display: block;
+    margin-top: 2rem;
+    text-align: left;
+    min-height: 220px;
 }
 
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
+.testimonial {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 1.75rem 2rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(6px);
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out, visibility 0s linear 0.9s;
+    pointer-events: none;
 }
 
-.footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
+.testimonial.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+    transition: opacity 0.9s ease-in-out, transform 0.9s ease-in-out, visibility 0s linear 0s;
 }
 
-.footer-links a {
-    color: white;
-    text-decoration: none;
-    transition: color 0.3s ease;
+.testimonial blockquote {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 1rem;
 }
 
-.footer-links a:hover {
-    color: #667eea;
+.testimonial figcaption {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+@media (max-width: 768px) {
+    .testimonial {
+        padding: 1.5rem;
+    }
 }
 
 /* Example color replacements */
