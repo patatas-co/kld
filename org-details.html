@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Details | ConnectEd</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="org-details-page">
+    <header id="header">
+        <nav>
+            <div class="nav-brand">
+                <div class="logo">
+                    <img src="images/logo.png" alt="Logo" class="logo-img" />
+                    <span class="logo-text">ConnectEd</span>
+                </div>
+            </div>
+            <a href="user-login.html" class="cta-btn">Join Now</a>
+        </nav>
+        <div class="breadcrumbs" aria-label="Breadcrumb">
+            <ol>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#organization">Organizations</a></li>
+                <li aria-current="page">Details</li>
+            </ol>
+        </div>
+    </header>
+    <main class="org-details-container">
+        <section class="org-hero">
+            <div class="org-hero-media">
+                <img src="" alt="Organization" class="org-hero-image" id="orgImage">
+            </div>
+            <div class="org-hero-content">
+                <h1 id="orgName"></h1>
+                <p class="org-tagline" id="orgTagline"></p>
+                <p class="org-description" id="orgDescription"></p>
+                <div class="org-actions">
+                    <a href="#" class="overlay-btn primary" id="applyLink" target="_blank" rel="noopener">Apply Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="org-achievements">
+            <h2>Achievements</h2>
+            <ul id="orgAchievements" class="achievement-list"></ul>
+        </section>
+
+        <section class="org-related">
+            <h2>Explore Other Organizations</h2>
+            <div class="related-grid" id="relatedOrganizations"></div>
+        </section>
+    </main>
+
+    <script src="org-data.js"></script>
+    <script src="org-details.js"></script>
+</body>
+</html>
