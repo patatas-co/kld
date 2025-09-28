@@ -1,0 +1,383 @@
+<?php
+require_once __DIR__ . '/session.php';
+
+$user = getAuthenticatedUser();
+$navUsername = $user['username'] ?? ($user['email'] ?? null);
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectEd</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="images/site.webmanifest">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="floating-shapes">
+            <div class="shape shape1"></div>
+            <div class="shape shape2"></div>
+            <div class="shape shape3"></div>
+            <div class="shape shape4"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo" class="logo-img" />
+                <span class="logo-text">ConnectEd</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#organization">Organizations</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <?php if ($user): ?>
+                <div class="nav-auth nav-auth--dropdown">
+                    <button class="nav-user-toggle" type="button" aria-expanded="false">
+                        <span class="nav-username">Hello, <?php echo htmlspecialchars($navUsername ?? 'Member', ENT_QUOTES, 'UTF-8'); ?></span>
+                        <span class="nav-user-caret" aria-hidden="true"></span>
+                    </button>
+                    <div class="nav-user-menu" role="menu">
+                        <a href="application-status.php" class="nav-user-action" role="menuitem">Application Status</a>
+                        <a href="logout.php" class="nav-user-action" role="menuitem">Log Out</a>
+                    </div>
+                </div>
+            <?php else: ?>
+                <a href="user-login.html" class="cta-btn">Join Now</a>
+            <?php endif; ?>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <video class="hero-bg-video" autoplay muted loop playsinline>
+            <source src="images/motmoot.mp4" type="video/mp4">
+        </video>
+        <div class="hero-content">
+            <h1>Empowering Student Success</h1>
+            <p>Connect, Learn, and Grow with our comprehensive school organization platform. Join thousands of students already transforming their educational journey.</p>
+            <div class="hero-buttons">
+                <a href="#programs" class="btn-primary">Explore Programs</a>
+                <a href="#testimonials" class="btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="organization">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet the Student Organizations</h2>
+                <p>Get to know the groups that empower, inspire, and support our student community.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="org/arete.jpg" alt="Academic Excellence" class="feature-img" />
+                    </div>
+                    <h3>Arete</h3>
+                    <p>Comprehensive programs designed to enhance learning outcomes and academic performance through innovative teaching methods.</p>
+                    <div class="feature-overlay">
+                        <div class="overlay-content">
+                            <h4>Join Arete</h4>
+                            <p>Be part of a community that pushes academic excellence through collaboration and innovative learning experiences.</p>
+                            <div class="overlay-actions">
+                                <a href="application-form.php?org=arete" class="overlay-btn primary">Apply Now</a>
+                                <a href="org-details.html?org=arete" class="overlay-btn secondary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="org/eternals.jpg" alt="Academic Excellence" class="feature-img" />
+                    </div>
+                    <h3>Eternals</h3>
+                    <p>Foster meaningful connections between students, educators, and parents to create a supportive learning environment.</p>
+                    <div class="feature-overlay">
+                        <div class="overlay-content">
+                            <h4>Connect with Eternals</h4>
+                            <p>Help cultivate lasting relationships between mentors and peers while driving school-wide engagement.</p>
+                            <div class="overlay-actions">
+                                <a href="application-form.php?org=eternals" class="overlay-btn primary">Apply Now</a>
+                                <a href="org-details.html?org=eternals" class="overlay-btn secondary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="org/git.jpg" alt="Academic Excellence" class="feature-img" />
+                    </div>
+                    <h3>GitCub</h3>
+                    <p>Cutting-edge resources and tools to prepare students for the challenges of tomorrow's dynamic world.</p>
+                    <div class="feature-overlay">
+                        <div class="overlay-content">
+                            <h4>Build with GitCub</h4>
+                            <p>Collaborate on innovative projects, sharpen your coding skills, and showcase your portfolio to recruiters.</p>
+                            <div class="overlay-actions">
+                                <a href="application-form.php?org=gitcub" class="overlay-btn primary">Apply Now</a>
+                                <a href="org-details.html?org=gitcub" class="overlay-btn secondary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="org/all star.jpg" alt="Academic Excellence" class="feature-img" />
+                    </div>
+                    <h3>I.S. All Stars</h3>
+                    <p>Holistic development programs focusing on leadership, creativity, and character building for well-rounded individuals.</p>
+                    <div class="feature-overlay">
+                        <div class="overlay-content">
+                            <h4>Shine with All Stars</h4>
+                            <p>Unlock your leadership potential and showcase your talents through signature All Star events and workshops.</p>
+                            <div class="overlay-actions">
+                                <a href="application-form.php?org=isallstars" class="overlay-btn primary">Apply Now</a>
+                                <a href="org-details.html?org=isallstars" class="overlay-btn secondary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="org/issoc.jpg" alt="Academic Excellence" class="feature-img" />
+                    </div>
+                    <h3>IICS</h3>
+                    <p>Access to extensive digital libraries, research materials, and learning resources available 24/7.</p>
+                    <div class="feature-overlay">
+                        <div class="overlay-content">
+                            <h4>Innovate with IICS</h4>
+                            <p>Collaborate on research initiatives and digital programs that elevate learning for the whole campus.</p>
+                            <div class="overlay-actions">
+                                <a href="application-form.php?org=iics" class="overlay-btn primary">Apply Now</a>
+                                <a href="org-details.html?org=iics" class="overlay-btn secondary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="org/peer.jpg" alt="Academic Excellence" class="feature-img" />
+                    </div>
+                    <h3>PeerFluencers</h3>
+                    <p>Celebrate student accomplishments and milestones with our comprehensive recognition and awards system.</p>
+                    <div class="feature-overlay">
+                        <div class="overlay-content">
+                            <h4>Lead as a PeerFluencer</h4>
+                            <p>Promote campus culture, mentor new students, and help every voice be heard across the community.</p>
+                            <div class="overlay-actions">
+                                <a href="application-form.php?org=peerfluencers" class="overlay-btn primary">Apply Now</a>
+                                <a href="org-details.html?org=peerfluencers" class="overlay-btn secondary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="org/pride.jpg" alt="Academic Excellence" class="feature-img" />
+                    </div>
+                    <h3>KLD Pride</h3>
+                    <p>Celebrate student accomplishments and milestones with our comprehensive recognition and awards system.</p>
+                    <div class="feature-overlay">
+                        <div class="overlay-content">
+                            <h4>Join KLD Pride</h4>
+                            <p>Celebrate school spirit, volunteer at major events, and champion inclusive traditions for everyone.</p>
+                            <div class="overlay-actions">
+                                <a href="application-form.php?org=kldpride" class="overlay-btn primary">Apply Now</a>
+                                <a href="org-details.html?org=kldpride" class="overlay-btn secondary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="org/los.jpg" alt="Academic Excellence" class="feature-img" />
+                    </div>
+                    <h3>Los Sueños</h3>
+                    <p>Celebrate student accomplishments and milestones with our comprehensive recognition and awards system.</p>
+                    <div class="feature-overlay">
+                        <div class="overlay-content">
+                            <h4>Dream with Los Sueños</h4>
+                            <p>Champion cultural showcases, creative performances, and outreach projects that uplift student voices.</p>
+                            <div class="overlay-actions">
+                                <a href="application-form.php?org=lossuenos" class="overlay-btn primary">Apply Now</a>
+                                <a href="org-details.html?org=lossuenos" class="overlay-btn secondary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="org/novus.jpg" alt="Academic Excellence" class="feature-img" />
+                    </div>
+                    <h3>NOVUS</h3>
+                    <p>Celebrate student accomplishments and milestones with our comprehensive recognition and awards system.</p>
+                    <div class="feature-overlay">
+                        <div class="overlay-content">
+                            <h4>Accelerate with NOVUS</h4>
+                            <p>Experiment with emerging tech and help launch the next wave of digital innovation on campus.</p>
+                            <div class="overlay-actions">
+                                <a href="application-form.php?org=novus" class="overlay-btn primary">Apply Now</a>
+                                <a href="org-details.html?org=novus" class="overlay-btn secondary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="org/psysoc.jpg" alt="Academic Excellence" class="feature-img" />
+                    </div>
+                    <h3>KLD Psychology Society</h3>
+                    <p>Celebrate student accomplishments and milestones with our comprehensive recognition and awards system.</p>
+                    <div class="feature-overlay">
+                        <div class="overlay-content">
+                            <h4>Support with Psych Society</h4>
+                            <p>Host wellness drives, explore human behavior, and advocate for mental health awareness on campus.</p>
+                            <div class="overlay-actions">
+                                <a href="application-form.php?org=psychsoc" class="overlay-btn primary">Apply Now</a>
+                                <a href="org-details.html?org=psychsoc" class="overlay-btn secondary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="org/chorus.jpg" alt="Academic Excellence" class="feature-img" />
+                    </div>
+                    <h3>Regal Euphony Chorus</h3>
+                    <p>Celebrate student accomplishments and milestones with our comprehensive recognition and awards system.</p>
+                    <div class="feature-overlay">
+                        <div class="overlay-content">
+                            <h4>Sing with Regal Euphony</h4>
+                            <p>Perform at flagship concerts, learn from experienced conductors, and harmonize with fellow vocalists.</p>
+                            <div class="overlay-actions">
+                                <a href="application-form.php?org=regaleuphony" class="overlay-btn primary">Apply Now</a>
+                                <a href="org-details.html?org=regaleuphony" class="overlay-btn secondary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="org/elec.jpg" alt="Academic Excellence" class="feature-img" />
+                    </div>
+                    <h3>Student Electoral Board</h3>
+                    <p>Celebrate student accomplishments and milestones with our comprehensive recognition and awards system.</p>
+                    <div class="feature-overlay">
+                        <div class="overlay-content">
+                            <h4>Serve on the Electoral Board</h4>
+                            <p>Uphold fair elections, organize candidate forums, and empower student voices in governance.</p>
+                            <div class="overlay-actions">
+                                <a href="application-form.php?org=electoral" class="overlay-btn primary">Apply Now</a>
+                                <a href="org-details.html?org=electoral" class="overlay-btn secondary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="org/flo.jpg" alt="Academic Excellence" class="feature-img" />
+                    </div>
+                    <h3>The Florence Nightingale Club</h3>
+                    <p>Celebrate student accomplishments and milestones with our comprehensive recognition and awards system.</p>
+                    <div class="feature-overlay">
+                        <div class="overlay-content">
+                            <h4>Care with Nightingale</h4>
+                            <p>Join community health missions, master first-aid response, and support wellness programs for all.</p>
+                            <div class="overlay-actions">
+                                <a href="application-form.php?org=nightingale" class="overlay-btn primary">Apply Now</a>
+                                <a href="org-details.html?org=nightingale" class="overlay-btn secondary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="org/urb.jpg" alt="Academic Excellence" class="feature-img" />
+                    </div>
+                    <h3>Urban Regals</h3>
+                    <p>Celebrate student accomplishments and milestones with our comprehensive recognition and awards system.</p>
+                    <div class="feature-overlay">
+                        <div class="overlay-content">
+                            <h4>Thrive with Urban Regals</h4>
+                            <p>Lead city outreach programs, collaborate with local partners, and showcase urban innovations.</p>
+                            <div class="overlay-actions">
+                                <a href="application-form.php?org=urbanregals" class="overlay-btn primary">Apply Now</a>
+                                <a href="org-details.html?org=urbanregals" class="overlay-btn secondary">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content" id="testimonials">
+            <h2>Why Choose Us?</h2>
+            <p>Join thousands of students and advisers who rely on ConnectEd to keep campus life organized, inclusive, and inspiring.</p>
+            <div class="testimonials">
+                <figure class="testimonial active">
+                    <blockquote>ConnectEd helped me discover organizations that matched my passions and introduced me to mentors I now work with every week.</blockquote>
+                    <figcaption>
+                        <img src="images/sir galve.jpg" alt="Jamie R." class="testimonial-avatar" />
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">Dr. Arnold B. Galve</span>
+                            <span class="testimonial-role">Faculty Adviser</span>
+                            <span class="testimonial-school">Kolehiyo ng Lungsod ng Dasmarinas</span>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure class="testimonial">
+                    <blockquote>Our club participation doubled after moving event sign-ups onto ConnectEd&mdash;students finally have a single place to stay engaged.</blockquote>
+                    <figcaption>
+                        <img src="images/testimonial-garcia.svg" alt="Ms. Garcia" class="testimonial-avatar" />
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">Ms. Garcia</span>
+                            <span class="testimonial-role">Faculty Adviser</span>
+                            <span class="testimonial-school">University of California, Berkeley</span>
+                        </div>
+                    </figcaption>
+                </figure>
+                <figure class="testimonial">
+                    <blockquote>ConnectEd streamlines messaging, scheduling, and recognition, making it easier for every student to feel seen and supported.</blockquote>
+                    <figcaption>
+                        <img src="images/testimonial-services.svg" alt="Student Services Office" class="testimonial-avatar" />
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">Student Services Office</span>
+                            <span class="testimonial-role">Campus Support Team</span>
+                            <span class="testimonial-school">University of California, San Diego</span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#contact">Contact</a>
+                <a href="#privacy">Privacy Policy</a>
+                <a href="#terms">Terms of Service</a>
+            </div>
+            <p>&copy; 2024 ConnectEd. All rights reserved. Empowering education for a brighter future.</p>
+        </div>
+    </footer>
+
+    <script src="nav-dropdown.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

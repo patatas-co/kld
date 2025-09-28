@@ -2,148 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organization Details | ConnectEd</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="org-details.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="manifest" href="images/site.webmanifest">
+    <script>
+        (function () {
+            var query = window.location.search || '';
+            window.location.replace('org-details.php' + query);
+        })();
+    </script>
+    <title>Redirecting…</title>
 </head>
-<body class="org-details-page">
-    <header id="header">
-        <nav>
-            <div class="nav-brand">
-                <div class="logo">
-                    <img src="images/logo.png" alt="Logo" class="logo-img" />
-                    <span class="logo-text">ConnectEd</span>
-                </div>
-                <div class="breadcrumbs" aria-label="Breadcrumb">
-                    <ol>
-                        <li><a href="index.html#home">Home</a></li>
-                        <li><a href="index.html#organization">Organizations</a></li>
-                        <li aria-current="page">Details</li>
-                    </ol>
-                </div>
-            </div>
-            <a href="user-login.html" class="cta-btn">Join Now</a>
-        </nav>
-    </header>
-    <main class="org-details">
-        <section class="hero">
-            <div class="hero-content">
-                <span class="hero-eyebrow">ConnectEd Organization</span>
-                <h1 id="orgName"></h1>
-                <p class="hero-tagline" id="orgTagline"></p>
-                <p class="hero-summary" id="orgSummary"></p>
-                <div class="hero-actions">
-                    <a href="#" class="primary-btn" id="applyLink" target="_blank" rel="noopener">Apply Now</a>
-                    <a href="index.html#organization" class="ghost-btn">Back to directory</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-value" id="orgStatMembers">Active</span>
-                        <span class="stat-label">Member Network</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value" id="orgStatPrograms">Programs</span>
-                        <span class="stat-label">Annual Initiatives</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value" id="orgStatImpact">Reach</span>
-                        <span class="stat-label">Community Touchpoints</span>
-                    </div>
-                </div>
-            </div>
-            <aside class="hero-media">
-                <div class="media-frame">
-                    <img src="" alt="Organization" class="hero-image" id="orgImage">
-                </div>
-            </aside>
-        </section>
-
-        <section class="org-overview">
-            <div class="section-heading">
-                <span class="section-eyebrow">Overview</span>
-                <h2>What the organization is all about</h2>
-            </div>
-            <p class="overview-text" id="orgAbout"></p>
-        </section>
-
-        <section class="org-highlights">
-            <div class="section-heading">
-                <span class="section-eyebrow">Highlights</span>
-                <h2>How it elevates student life</h2>
-            </div>
-            <div class="highlight-grid">
-                <article class="highlight-card">
-                    <h3>Signature Programs</h3>
-                    <p>Collaborate on flagship events, learning labs, and cross-campus campaigns that shape the ConnectEd experience.</p>
-                </article>
-                <article class="highlight-card">
-                    <h3>Guided Growth</h3>
-                    <p>Receive mentorship from upper-year leaders, faculty advisers, and alumni who share actionable insights.</p>
-                </article>
-                <article class="highlight-card">
-                    <h3>Community Impact</h3>
-                    <p>Extend your influence beyond classrooms by delivering programs that support partner communities and schools.</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="org-achievements">
-            <div class="section-heading">
-                <span class="section-eyebrow">Milestones</span>
-                <h2>Recent achievements</h2>
-            </div>
-            <div class="achievement-layout">
-                <div class="achievement-media">
-                    <img id="achievementImage" alt="Highlighted achievement">
-                </div>
-                <div class="achievement-details">
-                    <h3 id="achievementTitle"></h3>
-                    <p id="achievementDescription"></p>
-                    <button class="achievement-toggle" id="achievementToggle" type="button" aria-expanded="false">
-                        View full milestone list
-                    </button>
-                    <ul id="orgAchievements" class="achievement-list is-collapsed"></ul>
-                </div>
-            </div>
-        </section>
-
-        <section class="org-involvement">
-            <div class="section-heading">
-                <span class="section-eyebrow">Get Involved</span>
-                <h2>Ways to contribute this semester</h2>
-            </div>
-            <div class="involvement-grid">
-                <article class="involvement-card">
-                    <h3>Join a project squad</h3>
-                    <p>Support active campaigns by taking on roles in logistics, programming, or communications.</p>
-                </article>
-                <article class="involvement-card">
-                    <h3>Lead a workshop</h3>
-                    <p>Share your expertise through peer-led sessions that build skills across the student community.</p>
-                </article>
-                <article class="involvement-card">
-                    <h3>Partner with peers</h3>
-                    <p>Collaborate with other organizations to co-host events that expand the reach of your initiatives.</p>
-                </article>
-            </div>
-        </section>
-
-        <section class="org-related">
-            <div class="section-heading">
-                <span class="section-eyebrow">More to explore</span>
-                <h2>Discover other organizations</h2>
-            </div>
-            <div class="related-grid" id="relatedOrganizations"></div>
-            <button class="related-toggle" id="relatedToggle" type="button" aria-expanded="false">View more</button>
-        </section>
-    </main>
-
-    <script src="org-data.js"></script>
-    <script src="org-details.js"></script>
+<body>
+    <p>If you are not redirected automatically, follow this <a id="redirectLink" href="#">link to the organization details page</a>.</p>
+    <script>
+        (function () {
+            var query = window.location.search || '';
+            var link = document.getElementById('redirectLink');
+            if (link) {
+                link.href = 'org-details.php' + query;
+            }
+        })();
+    </script>
 </body>
 </html>

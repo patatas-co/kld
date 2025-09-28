@@ -1,38 +1,14 @@
 (function () {
-    const storageKey = 'connectedUsers';
-    const activeUserKey = 'connectedActiveUser';
-
     const signInForm = document.getElementById('signInForm');
     const signUpForm = document.getElementById('signUpForm');
     const toggleButtons = document.querySelectorAll('.toggle-btn, .inline-link[data-target]');
     const passwordToggleButtons = document.querySelectorAll('.password-toggle');
     const feedbackEl = document.getElementById('authFeedback');
 
-    function loadUsers() {
-        try {
-            const stored = localStorage.getItem(storageKey);
-            if (!stored) return [];
-            const parsed = JSON.parse(stored);
-            return Array.isArray(parsed) ? parsed : [];
-        } catch (err) {
-            console.error('Failed to parse stored users', err);
-            return [];
-        }
-    }
-
-    function saveUsers(users) {
-        localStorage.setItem(storageKey, JSON.stringify(users));
-    }
-
-    function setActiveUser(user, persist) {
-        const store = persist ? localStorage : sessionStorage;
-        store.setItem(activeUserKey, JSON.stringify({
-            fullName: user.fullName,
-            email: user.email,
-            studentId: user.studentId || null,
-            loginAt: new Date().toISOString()
-        }));
-    }
+    const endpoints = {
+        register: 'register.php',
+        login: 'login.php',
+    };
 
     function showFeedback(message, type = 'success') {
         if (!feedbackEl) return;
@@ -54,10 +30,13 @@
         const showSignIn = target === 'signin';
 
         toggleButtons.forEach(btn => {
-            if (btn.classList.contains('toggle-btn')) {
-                btn.classList.toggle('active', btn.dataset.target === target);
-                btn.setAttribute('aria-selected', btn.dataset.target === target ? 'true' : 'false');
+            if (!btn.classList.contains('toggle-btn')) {
+                return;
             }
+
+            const isActive = btn.dataset.target === target;
+            btn.classList.toggle('active', isActive);
+            btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
         });
 
         signInForm.classList.toggle('active', showSignIn);
@@ -91,27 +70,64 @@
         });
     });
 
+    const allowedEmailDomain = '@kld.edu.ph';
+
     function validateEmail(email) {
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function isSchoolEmail(email) {
+        return email.endsWith(allowedEmailDomain);
     }
 
     function trimValue(input) {
         return input ? input.trim() : '';
     }
 
-    signUpForm?.addEventListener('submit', event => {
+    function setLoading(form, isLoading) {
+        const button = form.querySelector('.auth-submit');
+        if (!button) return;
+        button.disabled = isLoading;
+        button.classList.toggle('is-loading', isLoading);
+        if (isLoading) {
+            button.dataset.originalText = button.textContent;
+            button.textContent = 'Please wait…';
+        } else if (button.dataset.originalText) {
+            button.textContent = button.dataset.originalText;
+            delete button.dataset.originalText;
+        }
+    }
+
+    async function submitForm(url, formData) {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: formData,
+        });
+
+        const data = await response.json().catch(() => ({
+            status: 'error',
+            message: 'Server returned an invalid response. Please try again.',
+        }));
+
+        if (!response.ok || data.status !== 'success') {
+            throw new Error(data.message || 'An unexpected error occurred.');
+        }
+
+        return data;
+    }
+
+    signUpForm?.addEventListener('submit', async event => {
         event.preventDefault();
         clearFeedback();
 
-        const fullName = trimValue(signUpForm.fullName.value);
-        const studentId = trimValue(signUpForm.studentId.value);
+        const username = trimValue(signUpForm.username.value);
         const email = trimValue(signUpForm.email.value).toLowerCase();
         const password = signUpForm.password.value || '';
         const confirmPassword = signUpForm.confirmPassword.value || '';
 
-        if (fullName.length < 3) {
-            showFeedback('Please enter your full name (at least 3 characters).', 'error');
-            signUpForm.fullName.focus();
+        if (username.length < 3) {
+            showFeedback('Username must be at least 3 characters long.', 'error');
+            signUpForm.username.focus();
             return;
         }
 
@@ -133,36 +149,46 @@
             return;
         }
 
-        const users = loadUsers();
-        const duplicate = users.find(user => user.email === email);
-        if (duplicate) {
-            showFeedback('An account with that email already exists. Try signing in instead.', 'error');
+        const payload = new FormData();
+        payload.set('username', username);
+        payload.set('email', email);
+        payload.set('password', password);
+        payload.set('confirmPassword', confirmPassword);
+
+        setLoading(signUpForm, true);
+
+        try {
+            const data = await submitForm(endpoints.register, payload);
+            showFeedback(data.message || 'Account created successfully! You can now sign in.', 'success');
+            signUpForm.reset();
             switchForm('signin');
-            signInForm.email.value = email;
-            signInForm.password.focus();
-            return;
+            if (signInForm) {
+                signInForm.email.value = email;
+                signInForm.password.focus();
+            }
+        } catch (error) {
+            showFeedback(error.message, 'error');
+        } finally {
+            setLoading(signUpForm, false);
         }
-
-        users.push({ fullName, studentId, email, password });
-        saveUsers(users);
-
-        signUpForm.reset();
-        showFeedback('Account created successfully! You can now sign in.', 'success');
-        switchForm('signin');
-        signInForm.email.value = email;
-        signInForm.password.focus();
     });
 
-    signInForm?.addEventListener('submit', event => {
+    signInForm?.addEventListener('submit', async event => {
         event.preventDefault();
         clearFeedback();
 
         const email = trimValue(signInForm.email.value).toLowerCase();
         const password = signInForm.password.value || '';
-        const remember = signInForm.remember.checked;
+        const remember = !!signInForm.remember?.checked;
 
         if (!validateEmail(email)) {
             showFeedback('Enter a valid email address.', 'error');
+            signInForm.email.focus();
+            return;
+        }
+
+        if (!isSchoolEmail(email)) {
+            showFeedback(`Only school email addresses (${allowedEmailDomain}) are allowed.`, 'error');
             signInForm.email.focus();
             return;
         }
@@ -173,20 +199,26 @@
             return;
         }
 
-        const users = loadUsers();
-        const user = users.find(u => u.email === email && u.password === password);
+        const payload = new FormData();
+        payload.set('email', email);
+        payload.set('password', password);
+        payload.set('remember', remember ? 'true' : 'false');
 
-        if (!user) {
-            showFeedback('Incorrect email or password. Please try again.', 'error');
+        setLoading(signInForm, true);
+
+        try {
+            const data = await submitForm(endpoints.login, payload);
+            showFeedback(data.message || 'Login successful. Redirecting…', 'success');
+
+            setTimeout(() => {
+                window.location.href = 'index.php';
+            }, 1000);
+        } catch (error) {
+            showFeedback(error.message, 'error');
             signInForm.password.focus();
-            return;
+        } finally {
+            setLoading(signInForm, false);
         }
-
-        setActiveUser(user, remember);
-        showFeedback('Welcome back! Redirecting you to the homepage…', 'success');
-
-        setTimeout(() => {
-            window.location.href = 'index.html';
-        }, 1200);
     });
+
 })();

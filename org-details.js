@@ -71,8 +71,14 @@
     }
 
     if (applyLinkEl) {
-        const applyHref = organization.applyLink && organization.applyLink !== '#' ? organization.applyLink : 'mailto:info@connected.edu.ph?subject=Application%20Inquiry%20-%20' + encodeURIComponent(organization.name);
-        applyLinkEl.href = applyHref;
+        const targetOrg = orgId ? orgId.toLowerCase() : '';
+        if (organization.applyLink && organization.applyLink !== '#') {
+            applyLinkEl.href = organization.applyLink;
+        } else {
+            applyLinkEl.href = `application-form.php?org=${encodeURIComponent(targetOrg)}`;
+        }
+        applyLinkEl.target = '';
+        applyLinkEl.rel = '';
     }
 
     if (orgAchievementsList) {
@@ -136,7 +142,7 @@
 
         relatedEntries.forEach(([key, org], index) => {
             const card = document.createElement('a');
-            card.href = `org-details.html?org=${encodeURIComponent(key)}`;
+            card.href = `org-details.php?org=${encodeURIComponent(key)}`;
             card.className = 'related-card';
 
             if (index >= RELATED_VISIBLE_COUNT) {
