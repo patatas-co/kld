@@ -249,10 +249,24 @@
     transition: all 0.25s ease;
 }
 
+.toggle-btn:hover,
+.toggle-btn:focus-visible {
+    background: rgba(12, 133, 112, 0.16);
+    color: #0c8570;
+    box-shadow: 0 10px 24px rgba(12, 133, 112, 0.18);
+    outline: none;
+}
+
 .toggle-btn.active {
-    background: var(--gradient);
+    background: linear-gradient(135deg, #0c8570 0%, #2fd4a4 100%);
     color: #fff;
-    box-shadow: 0 12px 30px rgba(67, 160, 71, 0.28);
+    box-shadow: 0 16px 34px rgba(12, 133, 112, 0.32);
+}
+
+.toggle-btn.active:hover,
+.toggle-btn.active:focus-visible {
+    box-shadow: 0 20px 44px rgba(12, 133, 112, 0.38);
+    transform: translateY(-1px);
 }
 
 .auth-form {
@@ -409,18 +423,25 @@
     padding: 0.95rem;
     border-radius: 18px;
     border: none;
-    background: var(--gradient);
+    background: linear-gradient(135deg, #0c8570 0%, #2fd4a4 100%);
     color: #fff;
     font-size: 1.05rem;
     font-weight: 700;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 18px 38px rgba(67, 160, 71, 0.28);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 20px 42px rgba(12, 133, 112, 0.3);
 }
 
 .auth-submit:hover {
     transform: translateY(-2px);
-    box-shadow: 0 26px 46px rgba(67, 160, 71, 0.33);
+    box-shadow: 0 28px 52px rgba(12, 133, 112, 0.36);
+    filter: saturate(112%);
+}
+
+.auth-submit:focus-visible {
+    outline: none;
+    transform: translateY(-1px);
+    box-shadow: 0 24px 48px rgba(12, 133, 112, 0.34), 0 0 0 3px rgba(47, 212, 164, 0.35);
 }
 
 .auth-meta {
