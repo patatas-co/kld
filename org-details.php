@@ -167,12 +167,12 @@ $navUsername = $user['username'] ?? ($user['email'] ?? null);
                 <h2>Frequently Asked Questions</h2>
             </div>
             <div class="faq-list" role="list">
-                <article class="faq-item is-open" role="listitem">
-                    <button class="faq-question" type="button" aria-expanded="true">
+                <article class="faq-item" role="listitem">
+                    <button class="faq-question" type="button" aria-expanded="false">
                         <span>Who is eligible to participate in the referrals program?</span>
                         <span class="faq-icon" aria-hidden="true"></span>
                     </button>
-                    <div class="faq-answer">
+                    <div class="faq-answer" hidden>
                         <p>Only subscribers on paid plans are eligible to refer someone else.</p>
                     </div>
                 </article>
