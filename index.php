@@ -366,14 +366,44 @@ $navUsername = $user['username'] ?? ($user['email'] ?? null);
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#contact">Contact</a>
-                <a href="#privacy">Privacy Policy</a>
-                <a href="#terms">Terms of Service</a>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-branding">
+                <img src="images/logo.png" alt="ConnectEd logo" class="footer-logo" />
+                <div>
+                    <p class="footer-title">ConnectEd</p>
+                    <p class="footer-tagline">Where students and organizations grow together.</p>
+                </div>
             </div>
-            <p>&copy; 2024 ConnectEd. All rights reserved. Empowering education for a brighter future.</p>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#organization">Organizations</a></li>
+                        <li><a href="application-status.php">Application Status</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#faq">FAQs</a></li>
+                        <li><a href="mailto:support@connected.edu">Contact Us</a></li>
+                        <li><a href="privacy.php">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <ul class="footer-social">
+                        <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-meta">
+            <p>&copy; <?php echo date('Y'); ?> ConnectEd. All rights reserved.</p>
         </div>
     </footer>
 
