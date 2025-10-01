@@ -401,6 +401,93 @@
     gap: 24px;
 }
 
+.org-faq {
+    background: linear-gradient(180deg, #3e046d, #1f003c 85%);
+    border-radius: var(--radius-lg);
+    padding: 56px 60px;
+    box-shadow: 0 28px 48px rgba(36, 0, 77, 0.45);
+    color: #f5ecff;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.org-faq .section-heading h2 {
+    color: inherit;
+    text-align: center;
+}
+
+.org-faq .section-heading {
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.org-faq .section-eyebrow {
+    color: rgba(245, 236, 255, 0.72);
+}
+
+.faq-list {
+    display: grid;
+    gap: 16px;
+}
+
+.faq-item {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq-item.is-open {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 32px rgba(22, 0, 53, 0.35);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 22px 24px;
+    background: transparent;
+    border: none;
+    color: inherit;
+    font: inherit;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+}
+
+.faq-question:focus-visible {
+    outline: 3px solid rgba(200, 242, 75, 0.75);
+    outline-offset: 3px;
+}
+
+.faq-icon::before {
+    content: '+';
+    font-size: 1.6rem;
+    line-height: 1;
+    display: inline-block;
+    transition: transform 0.25s ease;
+}
+
+.faq-item.is-open .faq-icon::before {
+    content: '−';
+    transform: scale(1.1);
+}
+
+.faq-answer {
+    padding: 0 24px 22px;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.75;
+}
+
+.faq-answer p {
+    margin: 0;
+}
+
 .related-card.is-collapsed {
     display: none;
 }
@@ -452,6 +539,95 @@
     color: var(--text-secondary);
     font-size: 0.95rem;
     line-height: 1.6;
+}
+
+.site-footer {
+    margin-top: 64px;
+    background: linear-gradient(135deg, #0f1a14 0%, #112f22 45%, #0a6a45 100%);
+    color: #e5fff4;
+    padding: 56px 5% 32px;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 36px;
+    align-items: start;
+}
+
+.footer-branding {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer-logo {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.35));
+}
+
+.footer-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.footer-tagline {
+    margin: 0;
+    color: rgba(229, 255, 244, 0.75);
+    max-width: 360px;
+    line-height: 1.6;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 24px;
+}
+
+.footer-column h3 {
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.footer-column ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 10px;
+}
+
+.footer-column a {
+    color: rgba(229, 255, 244, 0.85);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-column a:hover,
+.footer-column a:focus-visible {
+    color: #c8f24b;
+    outline: none;
+}
+
+.footer-social {
+    gap: 8px;
+}
+
+.footer-meta {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 24px;
+    border-top: 1px solid rgba(229, 255, 244, 0.18);
+    text-align: center;
+    color: rgba(229, 255, 244, 0.65);
+    font-size: 0.9rem;
 }
 
 .related-toggle {
@@ -509,8 +685,14 @@
 
     .org-overview,
     .org-achievements,
-    .org-related {
+    .org-related,
+    .org-faq {
         padding: 40px 32px;
+    }
+
+    .footer-inner {
+        grid-template-columns: 1fr;
+        margin-bottom: 32px;
     }
 }
 

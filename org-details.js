@@ -194,4 +194,49 @@
             }
         }
     }
+
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    if (faqItems.length) {
+        faqItems.forEach((item) => {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+
+            if (!question || !answer) {
+                return;
+            }
+
+            question.addEventListener('click', () => {
+                const isExpanded = question.getAttribute('aria-expanded') === 'true';
+
+                if (isExpanded) {
+                    question.setAttribute('aria-expanded', 'false');
+                    answer.hidden = true;
+                    item.classList.remove('is-open');
+                    return;
+                }
+
+                faqItems.forEach((otherItem) => {
+                    if (otherItem === item) {
+                        return;
+                    }
+
+                    const otherQuestion = otherItem.querySelector('.faq-question');
+                    const otherAnswer = otherItem.querySelector('.faq-answer');
+
+                    if (!otherQuestion || !otherAnswer) {
+                        return;
+                    }
+
+                    otherQuestion.setAttribute('aria-expanded', 'false');
+                    otherAnswer.hidden = true;
+                    otherItem.classList.remove('is-open');
+                });
+
+                question.setAttribute('aria-expanded', 'true');
+                answer.hidden = false;
+                item.classList.add('is-open');
+            });
+        });
+    }
 })();

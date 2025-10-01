@@ -160,7 +160,93 @@ $navUsername = $user['username'] ?? ($user['email'] ?? null);
             <div class="related-grid" id="relatedOrganizations"></div>
             <button class="related-toggle" id="relatedToggle" type="button" aria-expanded="false">View more</button>
         </section>
+
+        <section class="org-faq" id="faq">
+            <div class="section-heading">
+                <span class="section-eyebrow">Support</span>
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list" role="list">
+                <article class="faq-item is-open" role="listitem">
+                    <button class="faq-question" type="button" aria-expanded="true">
+                        <span>Who is eligible to participate in the referrals program?</span>
+                        <span class="faq-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Only subscribers on paid plans are eligible to refer someone else.</p>
+                    </div>
+                </article>
+                <article class="faq-item" role="listitem">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>Can I be referred by multiple people? Can I change who referred me?</span>
+                        <span class="faq-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="faq-answer" hidden>
+                        <p>Each member can list a single referrer. Contact support if you need to update your referral before completing registration.</p>
+                    </div>
+                </article>
+                <article class="faq-item" role="listitem">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>How do I know that I received my referral bonus? Where do I see this?</span>
+                        <span class="faq-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="faq-answer" hidden>
+                        <p>You will receive an email confirmation and can track the bonus under your member dashboard within 48 hours of approval.</p>
+                    </div>
+                </article>
+                <article class="faq-item" role="listitem">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>I referred a friend, why haven’t I gotten the bonus credits yet?</span>
+                        <span class="faq-icon" aria-hidden="true"></span>
+                    </button>
+                    <div class="faq-answer" hidden>
+                        <p>Bonuses post once your referral completes their onboarding. Reach out to the ConnectEd team if more than five business days have passed.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
     </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-branding">
+                <img src="images/logo.png" alt="ConnectEd logo" class="footer-logo" />
+                <div>
+                    <p class="footer-title">ConnectEd</p>
+                    <p class="footer-tagline">Where students and organizations grow together.</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>Explore</h3>
+                    <ul>
+                        <li><a href="index.php#home">Home</a></li>
+                        <li><a href="index.php#organization">Organizations</a></li>
+                        <li><a href="application-status.php">Application Status</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#faq">FAQs</a></li>
+                        <li><a href="mailto:support@connected.edu">Contact Us</a></li>
+                        <li><a href="privacy.php">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Connect</h3>
+                    <ul class="footer-social">
+                        <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
+                        <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-meta">
+            <p>&copy; <?php echo date('Y'); ?> ConnectEd. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script src="nav-dropdown.js"></script>
     <script src="org-data.js"></script>
