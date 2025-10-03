@@ -239,14 +239,27 @@
 }
 
 .highlight-card {
-    background: linear-gradient(150deg, rgba(255, 255, 255, 0.98), rgba(200, 242, 75, 0.08));
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.98), rgba(200, 242, 75, 0.1));
     border-radius: var(--radius-md);
     padding: 28px;
-    border: 1px solid var(--border);
-    box-shadow: 0 12px 28px rgba(15, 40, 80, 0.08);
+    border: 1px solid rgba(0, 166, 118, 0.28);
+    box-shadow: 0 10px 24px rgba(0, 102, 71, 0.12);
     display: flex;
     flex-direction: column;
     gap: 12px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, color 0.25s ease;
+}
+
+.highlight-card:hover,
+.highlight-card:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 20px 38px rgba(0, 102, 71, 0.18), 0 0 0 3px rgba(0, 166, 118, 0.18);
+    transform: translateY(-6px);
+}
+
+.highlight-card:hover h3,
+.highlight-card:focus-within h3 {
+    color: var(--accent-strong);
 }
 
 .highlight-card h3 {
@@ -344,13 +357,22 @@
 }
 
 .achievement-list li {
-    background: rgba(255, 255, 255, 0.92);
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.98), rgba(255, 240, 241, 0.65));
     border-radius: var(--radius-sm);
     padding: 18px 22px;
-    border: 1px solid rgba(0, 166, 118, 0.16);
-    box-shadow: 0 12px 24px rgba(14, 61, 44, 0.12);
+    border: 1px solid rgba(223, 72, 94, 0.25);
+    box-shadow: 0 10px 22px rgba(191, 30, 46, 0.12);
     font-weight: 500;
     color: var(--text-secondary);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, color 0.25s ease;
+}
+
+.achievement-list li:hover,
+.achievement-list li:focus-within {
+    border-color: rgba(223, 72, 94, 0.45);
+    box-shadow: 0 18px 36px rgba(191, 30, 46, 0.18), 0 0 0 3px rgba(223, 72, 94, 0.14);
+    transform: translateY(-4px);
+    color: #8f1f30;
 }
 
 .org-involvement {
@@ -366,14 +388,27 @@
 }
 
 .involvement-card {
-    background: linear-gradient(150deg, rgba(255, 255, 255, 0.98), rgba(200, 242, 75, 0.08));
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.98), rgba(200, 242, 75, 0.1));
     border-radius: var(--radius-md);
     padding: 28px;
-    border: 1px solid var(--border);
-    box-shadow: 0 12px 28px rgba(15, 40, 80, 0.08);
+    border: 1px solid rgba(0, 166, 118, 0.28);
+    box-shadow: 0 10px 24px rgba(0, 102, 71, 0.12);
     display: flex;
     flex-direction: column;
     gap: 12px;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, color 0.25s ease;
+}
+
+.involvement-card:hover,
+.involvement-card:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 20px 38px rgba(0, 102, 71, 0.18), 0 0 0 3px rgba(0, 166, 118, 0.18);
+    transform: translateY(-6px);
+}
+
+.involvement-card:hover h3,
+.involvement-card:focus-within h3 {
+    color: var(--accent-strong);
 }
 
 .involvement-card h3 {
