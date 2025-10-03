@@ -24,8 +24,10 @@ $containerClasses = 'auth-container auth-container--single';
         <nav>
             <div class="nav-brand">
                 <div class="logo">
-                    <img src="images/logo.png" alt="ConnectEd logo" class="logo-img" />
-                    <span class="logo-text">ConnectEd</span>
+                    <a href="index.php" class="logo-link">
+                        <img src="images/logo.png" alt="ConnectEd logo" class="logo-img" />
+                        <span class="logo-text">ConnectEd</span>
+                    </a>
                 </div>
                 <div class="breadcrumbs auth-breadcrumbs" aria-label="Breadcrumb">
                     <ol>

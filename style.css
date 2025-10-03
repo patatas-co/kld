@@ -201,13 +201,20 @@ nav {
     position: static;
 }
 
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    background: inherit;
+    color: inherit;
+    -webkit-text-fill-color: inherit;
+}
+
 .logo-img {
     height: 40px;
     width: auto;
-    margin-right: 10px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    position: relative;
+    margin-right: 0;
 }
 
 .nav-links a::after {

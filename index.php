@@ -31,8 +31,10 @@ $navUsername = $user['username'] ?? ($user['email'] ?? null);
     <header id="header">
         <nav>
             <div class="logo">
-                <img src="images/logo.png" alt="Logo" class="logo-img" />
-                <span class="logo-text">ConnectEd</span>
+                <a href="index.php" class="logo-link">
+                    <img src="images/logo.png" alt="Logo" class="logo-img" />
+                    <span class="logo-text">ConnectEd</span>
+                </a>
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
@@ -397,7 +399,6 @@ $navUsername = $user['username'] ?? ($user['email'] ?? null);
                     <ul class="footer-social">
                         <li><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a></li>
                         <li><a href="https://www.instagram.com" target="_blank" rel="noopener">Instagram</a></li>
-                        <li><a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a></li>
                     </ul>
                 </div>
             </div>
