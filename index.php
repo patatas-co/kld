@@ -408,6 +408,35 @@ $navUsername = $user['username'] ?? ($user['email'] ?? null);
         </div>
     </footer>
 
+    <div class="chatbot-widget" data-chatbot>
+        <button class="chatbot-toggle" type="button" aria-expanded="false" aria-controls="chatbot-window" aria-label="Open chatbot">
+            <span class="chatbot-toggle-icon">💬</span>
+        </button>
+        <div class="chatbot-window" id="chatbot-window" role="dialog" aria-hidden="true">
+            <div class="chatbot-header">
+                <div class="chatbot-heading">
+                    <h3>ConnectEd Assistant</h3>
+                    <p>Ask a question about the platform</p>
+                </div>
+                <button class="chatbot-close" type="button" aria-label="Close chat">×</button>
+            </div>
+            <div class="chatbot-questions" data-collapsible aria-label="Suggested questions">
+                <button class="chatbot-questions-toggle" type="button" aria-expanded="true" aria-controls="chatbot-questions-panel">
+                    <span class="chatbot-questions-label">Common questions</span>
+                    <span class="chatbot-questions-icon" aria-hidden="true">▾</span>
+                </button>
+                <div class="chatbot-questions-panel" id="chatbot-questions-panel">
+                    <div class="chatbot-questions-list" role="list"></div>
+                </div>
+            </div>
+            <div class="chatbot-messages" role="log" aria-live="polite"></div>
+            <form class="chatbot-form" autocomplete="off">
+                <input class="chatbot-input" type="text" name="message" placeholder="Type your question..." aria-label="Question" required>
+                <button class="chatbot-send" type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+
     <script src="nav-dropdown.js"></script>
     <script src="script.js"></script>
 </body>

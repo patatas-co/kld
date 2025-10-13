@@ -122,3 +122,132 @@ if (testimonials.length) {
         testimonialsContainer.addEventListener('mouseleave', startTestimonialRotation);
     }
 }
+
+const chatbotDataset = [
+    {
+        question: 'What is this system for?',
+        answer: 'This system helps users manage and track our student organization platform.'
+    },
+    {
+        question: 'How do I register?',
+        answer: 'Click on the Register button and fill in the required fields.'
+    },
+    {
+        question: 'Who can use this system?',
+        answer: 'Only registered users with valid accounts can access it.'
+    },
+    {
+        question: 'How do I contact support?',
+        answer: 'Send an email to support@example.com.'
+    }
+];
+
+function normalizeChatbotInput(input) {
+    return input.toLowerCase().replace(/[?!.,]/g, '').trim();
+}
+
+function initializeChatbot() {
+    const widget = document.querySelector('[data-chatbot]');
+    if (!widget) {
+        return;
+    }
+
+    const toggleButton = widget.querySelector('.chatbot-toggle');
+    const closeButton = widget.querySelector('.chatbot-close');
+    const chatWindow = widget.querySelector('.chatbot-window');
+    const messages = widget.querySelector('.chatbot-messages');
+    const questionsList = widget.querySelector('.chatbot-questions-list');
+    const questionsContainer = widget.querySelector('.chatbot-questions');
+    const questionsToggle = widget.querySelector('.chatbot-questions-toggle');
+    const form = widget.querySelector('.chatbot-form');
+    const input = widget.querySelector('.chatbot-input');
+    const dataset = new Map(chatbotDataset.map(item => [normalizeChatbotInput(item.question), item.answer]));
+    let hasGreeted = false;
+
+    function appendMessage(role, text) {
+        const bubble = document.createElement('div');
+        bubble.className = `chatbot-bubble chatbot-bubble--${role}`;
+        bubble.textContent = text;
+        messages.appendChild(bubble);
+        messages.scrollTop = messages.scrollHeight;
+    }
+
+    function handleUserMessage(rawText) {
+        const value = rawText.trim();
+        if (!value) {
+            return;
+        }
+        appendMessage('user', value);
+        const normalized = normalizeChatbotInput(value);
+        const answer = dataset.get(normalized) || 'Sorry, I don’t understand that yet.';
+        appendMessage('bot', answer);
+    }
+
+    function openChat() {
+        if (widget.classList.contains('is-open')) {
+            return;
+        }
+        widget.classList.add('is-open');
+        toggleButton.setAttribute('aria-expanded', 'true');
+        chatWindow.setAttribute('aria-hidden', 'false');
+        if (!hasGreeted) {
+            appendMessage('bot', 'Hi! You can ask me about ConnectEd.');
+            hasGreeted = true;
+        }
+        requestAnimationFrame(() => {
+            input.focus();
+        });
+    }
+
+    function closeChat() {
+        widget.classList.remove('is-open');
+        toggleButton.setAttribute('aria-expanded', 'false');
+        chatWindow.setAttribute('aria-hidden', 'true');
+    }
+
+    toggleButton.addEventListener('click', () => {
+        if (widget.classList.contains('is-open')) {
+            closeChat();
+        } else {
+            openChat();
+        }
+    });
+
+    closeButton.addEventListener('click', closeChat);
+
+    if (questionsList) {
+        chatbotDataset.forEach(item => {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'chatbot-question-btn';
+            button.textContent = item.question;
+            button.addEventListener('click', () => {
+                openChat();
+                handleUserMessage(item.question);
+            });
+            questionsList.appendChild(button);
+        });
+    }
+
+    if (questionsContainer && questionsToggle) {
+        questionsToggle.addEventListener('click', () => {
+            const isCollapsed = questionsContainer.classList.toggle('is-collapsed');
+            questionsToggle.setAttribute('aria-expanded', String(!isCollapsed));
+        });
+    }
+
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        const value = input.value;
+        handleUserMessage(value);
+        input.value = '';
+    });
+
+    widget.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+            closeChat();
+        }
+    });
+}
+
+initializeChatbot();
