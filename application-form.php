@@ -5,6 +5,8 @@ $user = getAuthenticatedUser();
 $org = isset($_GET['org']) ? trim($_GET['org']) : null;
 $orgSafe = $org ? htmlspecialchars($org, ENT_QUOTES, 'UTF-8') : null;
 $containerClasses = 'auth-container auth-container--single';
+$mailerEndpoint = getenv('MAILER_ENDPOINT') ?: 'http://localhost:4000/api/applications';
+$mailerEndpointSafe = htmlspecialchars($mailerEndpoint, ENT_QUOTES, 'UTF-8');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,7 +70,7 @@ $containerClasses = 'auth-container auth-container--single';
                 <?php else: ?>
                     <h1 id="applyHeading">Apply to Organization<?php echo $orgSafe ? ': ' . $orgSafe : ''; ?></h1>
                     <p>Complete the form below to submit your application. A confirmation will be sent to your registered email.</p>
-                    <form id="applicationForm" class="auth-form active" method="post" action="submit-application.php" data-org="<?php echo $orgSafe ?: 'general'; ?>" data-logo="images/logo.png">
+                    <form id="applicationForm" class="auth-form active" method="post" action="submit-application.php" data-org="<?php echo $orgSafe ?: 'general'; ?>" data-logo="images/logo.png" data-mailer-endpoint="<?php echo $mailerEndpointSafe; ?>">
                         <input type="hidden" name="org" value="<?php echo $orgSafe ?: ''; ?>">
                         <div class="form-group">
                             <label for="applicantName">Full name</label>

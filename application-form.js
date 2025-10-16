@@ -17,6 +17,7 @@
     const orgIdentifier = form.dataset.org || 'general';
     const orgLabel = headingEl ? headingEl.textContent.replace(/^Apply to Organization:?\s*/i, '').trim() || orgIdentifier : orgIdentifier;
     const logoSource = form.dataset.logo || 'images/logo.png';
+    const mailerEndpoint = form.dataset.mailerEndpoint || '';
     let logoDataUrlLoaded = false;
     let logoDataUrlCache = null;
 
@@ -373,7 +374,43 @@
                 throw new Error(message);
             }
 
-            showFeedback(data.message || 'Your application has been submitted successfully!', 'success');
+            let mailerFailed = false;
+
+            if (mailerEndpoint) {
+                try {
+                    const payload = {
+                        name: submission.name,
+                        email: submission.email,
+                        message: submission.message,
+                        contribution: submission.contribution,
+                        organization: submission.org
+                    };
+
+                    const mailResponse = await fetch(mailerEndpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const mailData = await mailResponse.json().catch(() => null);
+
+                    if (!mailResponse.ok || !mailData || mailData.status !== 'success') {
+                        const message = mailData?.message || 'Notification service returned an error.';
+                        throw new Error(message);
+                    }
+                } catch (error) {
+                    console.error('Mailer request failed:', error);
+                    mailerFailed = true;
+                }
+            }
+
+            const successMessage = mailerFailed ?
+                'Your application has been submitted successfully! (Email notification pending.)' :
+                'Your application has been submitted successfully!';
+
+            showFeedback(successMessage, 'success');
             clearDraft();
 
             if (window.confirm('Would you like to download a copy of your submitted application?')) {
